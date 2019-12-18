@@ -1,0 +1,294 @@
+<html>
+    <head>
+    <title>todo: Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="fragment" content="!">
+    <link rel="stylesheet" type="text/css" href="./assets/css/project-02-style.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"/>
+    <script type="text/javascript" src="./assets/js/project-02.js" defer></script>
+    <script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+
+    </head>
+    <body>
+
+        <!--header-->
+        <div class="header">
+            <div class="header__title">{{ header }}</div> 
+        </div>
+
+        <div class="main-container">
+            <div class="manual-map__title">
+                Criação de manual
+            </div>
+            <!-- map area-->
+            <div class="manual-map">
+                <div class="manual-map__step-title">
+                    descrição
+                </div>
+                <div></div>
+                <div class="manual-map__step-title">
+                    lojas
+                </div>
+                <div></div>
+                <div class="manual-map__step-title">
+                    fotos
+                </div>
+                <div class="manual-map__step">
+                    1
+                </div>
+                <hr class="manual-map__divider">
+                <div class="manual-map__step">
+                    2
+                </div>
+                <hr class="manual-map__divider">
+                <div class="manual-map__step manual-map__step--active">
+                    3
+                </div>
+            </div>
+
+            <!--add space combobox-->
+            <div class="add-space">
+              <div id="defaultSpace" >
+                <div class="add-space__title">
+                  Adicionar espaço ao manual
+              </div>
+              <div class="add-space__combobox-container">
+                  <select name="spaces" class="add-space__combobox">
+                      <option class="add-space__combobox-text add-space__combobox-text--default" value="">Selecione uma opção...</option>
+                      <option class="add-space__combobox-text add-space__combobox-text--title" disabled value="vitrine1">Vitrine 1</option>
+                      <option class="add-space__combobox-text" value="espaco1">Espaço 1</option>
+                      <option class="add-space__combobox-text" value="espaco2">Espaço 2</option>
+                      <option class="add-space__combobox-text add-space__combobox-text--title" disabled value="vitrine2">Vitrine 2</option>
+                      <option class="add-space__combobox-text" value="espaco3">Espaço 3</option>
+                      <option class="add-space__combobox-text" value="espaco4">Espaço 4</option>
+                      <option class="add-space__combobox-text" value="create">Criar novo espaço</option>
+                  </select>
+
+                  <div class="add-space__button" onclick="createSpace()">
+                      OK
+                  </div>
+                </div>
+              </div>
+
+              <div id="createCategory" class="create-category-container element-hide">
+                <div class="create-category__title">Nome do espaço</div>
+                <input class="create-category__input"></input>
+                <div class="create-category__title">Criar nova categoria</div>
+                <select name="spaces" class="create-category__combobox">
+                    <option class="add-space__combobox-text add-space__combobox-text--default" value="">Selecione uma opção...</option>
+                    <option class="add-space__combobox-text add-space__combobox-text--title" disabled value="vitrine1">Vitrine 1</option>
+                    <option class="add-space__combobox-text add-space__combobox-text--title" disabled value="vitrine2">Vitrine 2</option>
+                    <option class="add-space__combobox-text" value="create">Criar nova categoria</option>
+                </select>
+            </div>
+          </div>
+            <!--spaces area TODO: AJUSTAR-->
+
+            <div id="spacesContent" class="content">
+
+                <div id="spaceList" class="collapsible-menu">
+                  <div class="space-list-item">
+                    <input id="collapsible" class="toggle" type="checkbox">
+                    <label for="collapsible" class="collapsible-menu__label-toggle">
+                      <ion-icon class="grab-icon" name="reorder"></ion-icon>
+                      Espaço 1 (8 itens)
+                    <div class="collapsible-menu__arrow">
+                      <ion-icon name="arrow-down"></ion-icon>
+                    </div>
+                  </label>
+                  <div class="collapsible-menu__content">
+                    <div class="collapsible-menu__content-inner">
+                      <div id="blockSpace1" class="space">
+                        <div class="block-container" data-id="1">
+                          <div class="block-add-title">Adicionar item</div>
+                          <div class="block-add" draggable="false" onclick="addPhoto()"><ion-icon class="icon-add" name="add"></ion-icon></div>
+                          <div class="block-description">"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure</div>
+                        </div>
+                        <div class="block-container" data-id="2">
+                          <ion-icon class="grab-icon-block" name="reorder"></ion-icon>
+                          <div class="block block02" draggable="true" ondragstart="drag(event)" >
+                            <div class="icon-photo-number">
+                              1
+                            </div>
+                          </div>
+                          <div class="block-description">"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure</div>
+                        </div>
+                        <div class="block-container" data-id="3">
+                          <ion-icon class="grab-icon-block" name="reorder"></ion-icon>
+                          <div class="block block03" draggable="true" ondragstart="drag(event)"></div>
+                          <div class="block-description">oi oi oi</div>
+                        </div>
+                        <div class="block-container" data-id="4">
+                          <ion-icon class="grab-icon-block" name="reorder"></ion-icon>
+                          <div class="block block04" draggable="true" ondragstart="drag(event)"></div>
+                          <div class="block-description">oi oi oi</div>
+                        </div>
+                        <div class="block-container" data-id="5">
+                          <ion-icon class="grab-icon-block" name="reorder"></ion-icon>
+                          <div class="block block05" draggable="true" ondragstart="drag(event)"></div>
+                          <div class="block-description">oi oi oi</div>
+                        </div>
+                        <div class="block-container" data-id="6">
+                          <ion-icon class="grab-icon-block" name="reorder"></ion-icon>
+                          <div class="block block06" draggable="true" ondragstart="drag(event)"></div>
+                          <div class="block-description">oi oi oi</div>
+                        </div>
+                        <div class="block-container" data-id="7">
+                          <ion-icon class="grab-icon-block" name="reorder"></ion-icon>
+                          <div class="block block07" draggable="true" ondragstart="drag(event)"></div>
+                          <div class="block-description">oi oi oi</div>
+                        </div>
+                        <div class="block-container" data-id="8">
+                          <ion-icon class="grab-icon-block" name="reorder"></ion-icon>
+                          <div class="block block08" draggable="true" ondragstart="drag(event)"></div>
+                          <div class="block-description">oi oi oi</div>
+                        </div>
+                        <div class="block-container" data-id="9">
+                          <ion-icon class="grab-icon-block" name="reorder"></ion-icon>
+                          <div class="block block09" draggable="true" ondragstart="drag(event)"></div>
+                          <div class="block-description">oi oi oi</div>
+                        </div>         
+                      </div>
+                    </div>
+                  </div>
+                 </div>
+                 
+                  
+                      <div class="space-list-item">
+                    <input id="collapsible2" class="toggle" type="checkbox">
+                    <label for="collapsible2" class="collapsible-menu__label-toggle">
+                      <ion-icon class="grab-icon" name="reorder"></ion-icon>
+                        Espaço 2 (8 itens)
+                    <div class="collapsible-menu__arrow">
+                      <ion-icon name="arrow-down"></ion-icon>
+                    </div>
+                  </label>
+                  <div class="collapsible-menu__content">
+                    <div class="collapsible-menu__content-inner">
+                      <div id="blockSpace2" class="space">
+                        <div class="block-container">
+                          <div class="block-add-title">Adicionar item</div>
+                          <div class="block-add" draggable="false" onclick="addPhoto()"><ion-icon class="icon-add" name="add"></ion-icon></div>
+                          <div class="block-description">"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure</div>
+                        </div>
+                        <div class="block-container">
+                          <ion-icon class="grab-icon-block" name="reorder"></ion-icon>
+                          <div class="block block02" draggable="true" ondragstart="drag(event)"></div>
+                          <div class="block-description">"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure</div>
+                        </div>
+                        <div class="block-container">
+                          <ion-icon class="grab-icon-block" name="reorder"></ion-icon>
+                          <div class="block block03" draggable="true" ondragstart="drag(event)"></div>
+                          <div class="block-description">oi oi oi</div>
+                        </div>
+                        <div class="block-container">
+                          <ion-icon class="grab-icon-block" name="reorder"></ion-icon>
+                          <div class="block block04" draggable="true" ondragstart="drag(event)"></div>
+                          <div class="block-description">oi oi oi</div>
+                        </div>
+                        <div class="block-container">
+                          <ion-icon class="grab-icon-block" name="reorder"></ion-icon>
+                          <div class="block block05" draggable="true" ondragstart="drag(event)"></div>
+                          <div class="block-description">oi oi oi</div>
+                        </div>
+                        <div class="block-container">
+                          <ion-icon class="grab-icon-block" name="reorder"></ion-icon>
+                          <div class="block block06" draggable="true" ondragstart="drag(event)"></div>
+                          <div class="block-description">oi oi oi</div>
+                        </div>
+                        <div class="block-container">
+                          <ion-icon class="grab-icon-block" name="reorder"></ion-icon>
+                          <div class="block block07" draggable="true" ondragstart="drag(event)"></div>
+                          <div class="block-description">oi oi oi</div>
+                        </div>
+                        <div class="block-container">
+                          <ion-icon class="grab-icon-block" name="reorder"></ion-icon>
+                          <div class="block block08" draggable="true" ondragstart="drag(event)"></div>
+                          <div class="block-description">oi oi oi</div>
+                        </div>
+                        <div class="block-container">
+                          <ion-icon class="grab-icon-block" name="reorder"></ion-icon>
+                          <div class="block block09" draggable="true" ondragstart="drag(event)"></div>
+                          <div class="block-description">oi oi oi</div>
+                        </div>         
+                      </div>
+                    </div>
+                  </div>
+                 </div>
+                  
+                      <div class="space-list-item">
+                    <input id="collapsible3" class="toggle" type="checkbox">
+                    <label for="collapsible3" class="collapsible-menu__label-toggle">
+                      <ion-icon class="grab-icon" name="reorder"></ion-icon>
+                      Espaço 3 (8 itens)
+                    <div class="collapsible-menu__arrow">
+                      <ion-icon name="arrow-down"></ion-icon>
+                    </div>
+                  </label>
+                  <div class="collapsible-menu__content">
+                    <div class="collapsible-menu__content-inner">
+                      <div id="blockSpace3" class="space">
+                        <div class="block-container">
+                          <div class="block-add-title">Adicionar item</div>
+                          <div class="block-add" draggable="false" onclick="addPhoto()"><ion-icon class="icon-add" name="add"></ion-icon></div>
+                          <div class="block-description">"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure</div>
+                        </div>
+                        <div class="block-container">
+                          <ion-icon class="grab-icon-block" name="reorder"></ion-icon>
+                          <div class="block block02" draggable="true" ondragstart="drag(event)"></div>
+                          <div class="block-description">"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure</div>
+                        </div>
+                        <div class="block-container">
+                          <ion-icon class="grab-icon-block" name="reorder"></ion-icon>
+                          <div class="block block03" draggable="true" ondragstart="drag(event)"></div>
+                          <div class="block-description">oi oi oi</div>
+                        </div>
+                        <div class="block-container">
+                          <ion-icon class="grab-icon-block" name="reorder"></ion-icon>
+                          <div class="block block04" draggable="true" ondragstart="drag(event)"></div>
+                          <div class="block-description">oi oi oi</div>
+                        </div>
+                        <div class="block-container">
+                          <ion-icon class="grab-icon-block" name="reorder"></ion-icon>
+                          <div class="block block05" draggable="true" ondragstart="drag(event)"></div>
+                          <div class="block-description">oi oi oi</div>
+                        </div>
+                        <div class="block-container">
+                          <ion-icon class="grab-icon-block" name="reorder"></ion-icon>
+                          <div class="block block06" draggable="true" ondragstart="drag(event)"></div>
+                          <div class="block-description">oi oi oi</div>
+                        </div>
+                        <div class="block-container">
+                          <ion-icon class="grab-icon-block" name="reorder"></ion-icon>
+                          <div class="block block07" draggable="true" ondragstart="drag(event)"></div>
+                          <div class="block-description">oi oi oi</div>
+                        </div>   
+                      </div>
+                    </div>
+                  </div>
+                 </div>
+                </div>
+              </div>
+              
+            
+            <!--footer-->
+            <div class="footer">
+                <div class="footer__button-save">
+                    salvar rascunho
+                </div>
+                <div id="defaultButton" class="footer__button-publish">
+                    publicar
+                </div>
+                <div id="createCategoryButton" class="footer__button-create element-hide" onclick="createSpaceButton()">
+                  criar
+              </div>
+            </div>
+        </div>
+
+    </body>
+</html>
