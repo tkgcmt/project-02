@@ -76,15 +76,17 @@
               </div>
 
               <div id="createCategory" class="create-category-container element-hide">
-                <div class="create-category__title">Nome do espaço</div>
+                <div class="create-category__title" id="newSpaceName">Nome do espaço</div>
                 <input class="create-category__input"></input>
                 <div class="create-category__title">Criar nova categoria</div>
-                <select name="spaces" class="create-category__combobox">
+                <select name="spacesCategory" class="create-category__combobox" onchange="isNewCategory()">
                     <option class="add-space__combobox-text add-space__combobox-text--default" value="">Selecione uma opção...</option>
-                    <option class="add-space__combobox-text add-space__combobox-text--title" disabled value="vitrine1">Vitrine 1</option>
-                    <option class="add-space__combobox-text add-space__combobox-text--title" disabled value="vitrine2">Vitrine 2</option>
+                    <option class="add-space__combobox-text" value="vitrine1">Vitrine 1</option>
+                    <option class="add-space__combobox-text" value="vitrine2">Vitrine 2</option>
                     <option class="add-space__combobox-text" value="create">Criar nova categoria</option>
                 </select>
+                <div class="create-category__title element-hide" id="newCategoryName_title">Nome da categoria</div>
+                <input class="create-category__input element-hide" id="newCategoryName"></input>
             </div>
           </div>
             <!--spaces area TODO: AJUSTAR-->
@@ -156,10 +158,8 @@
                       </div>
                     </div>
                   </div>
-                 </div>
-                 
-                  
-                      <div class="space-list-item">
+                 </div>    
+                  <div class="space-list-item">
                     <input id="collapsible2" class="toggle" type="checkbox">
                     <label for="collapsible2" class="collapsible-menu__label-toggle">
                       <ion-icon class="grab-icon" name="reorder"></ion-icon>
@@ -281,9 +281,30 @@
                 <div class="footer__button-save">
                     salvar rascunho
                 </div>
-                <div id="defaultButton" class="footer__button-publish">
+                <div id="defaultButton" class="footer__button-publish" onclick="publishManual()">
                     publicar
                 </div>
+
+                <!-- The Modal -->
+                <div id="confirmPublishModal" class="modal">
+                  <!-- Modal content -->
+                  <div class="modal-content">
+                    <p>Ao publicar, você enviará esse manual para as XX lojas selecionadas. Tem certeza que deseja prosseguir?</p>
+                  </div>
+                  <div class="tooltip-buttons">
+                    <div id="modal_cancel" class="tooltip-red-button" onclick="closeModal()">
+                      Não, cancelar
+                    </div>
+                    <div id="modal_ok" class="tooltip-green-button" onclick="publishManual()">
+                      Sim, enviar
+                    </div>
+                  </div>
+
+
+                <!-- Para aplicar o estilo de desabilitado, basta adicionar a classe disabled. É preciso interceptar a ação via JS ainda. -->
+                <!-- <div id="defaultButton" class="footer__button-publish disabled">
+                  publicar
+                </div> -->
                 <div id="createCategoryButton" class="footer__button-create element-hide" onclick="createSpaceButton()">
                   criar
               </div>

@@ -127,7 +127,8 @@ body {
     background-color: #fff;
 }
 
-.footer__button-save {
+.footer__button-save,
+.footer__button-gotoDashboard {
     background: #FFFFFF 0% 0% no-repeat padding-box;
     border: 2px solid #66CCFF;
     border-radius: 24px;
@@ -147,6 +148,10 @@ body {
     font-size: 14px;
     padding: 10px 24px;
     margin-right: 10px;
+}
+
+.footer__button-publish.disabled {
+  background-color: #707070;
 }
 
 .content {
@@ -524,6 +529,59 @@ ion-toolbar {
   font-weight: 600;
 }
 
+
+.block-container,
+.details-container__photo {
+  position: relative;
+}
+
+.details-container__menu {
+  position: absolute;
+}
+
+.details-container__photo .details-container__menu{
+  top: 13px;
+  right: 13px;
+}
+
+.block-container .details-container__menu{
+  top: 20px;
+  right: 10px;
+}
+
+.details-container-menu__icon {
+  position: relative;
+}
+
+.details-container-menu__icon,
+.details-container-menu__icon::after,
+.details-container-menu__icon::before {
+  display: block;
+  width: 4px;
+  height: 4px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px #000;
+}
+
+.details-container-menu__icon::after,
+.details-container-menu__icon::before {
+  content: "";
+}
+
+.details-container__photo .details-container-menu__icon::after,
+.block-container .details-container-menu__icon::after {
+  position: absolute;
+  top: 8px;
+}
+
+.details-container__photo .details-container-menu__icon::before,
+.block-container .details-container-menu__icon::before {
+  position: absolute;
+  top: 16px;
+}
+
+
 .footer__button-create {
   background: #66CCFF 0% 0% no-repeat padding-box;
   border-radius: 23px;
@@ -563,6 +621,7 @@ ion-toolbar {
   width: 100%;
   font-size: 12px;
   height: 32px;
+  margin-bottom: 15px;
 }
 
 .block-gallery-icon {
@@ -670,6 +729,18 @@ ion-toolbar {
   align-items: center;
 }
 
+.tooltip-green-button {
+  border-radius: 23px;
+  color: #fff;
+  background-color: #92F18F;
+  font-size: 14px;
+  padding: 10px 30px;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .tooltip-blue-button {
   border: 2px solid #66CCFF;
   border-radius: 24px;
@@ -682,6 +753,25 @@ ion-toolbar {
   align-items: center;
 }
 
+.published-manual__body {
+  margin: 20px 10px;
+  text-align: center;
+}
+
+.published-manual__body h1 {
+  margin: 20px auto 20px;
+}
+
+.published-manual__body .big-icon {
+  font-size: 150px;
+  color: #92F18F;
+  margin: 20px auto 40px;
+}
+
+.footer__button-gotoDashboard {
+  margin-top: 60px;
+}
+
 @keyframes bottom {
   0% {
       opacity: 0;
@@ -691,4 +781,32 @@ ion-toolbar {
       opacity: 1;
       transform: translateY(-50px);
   }
+}
+
+
+
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 8px;
+  width: 80%; /* Could be more or less, depending on screen size */
 }

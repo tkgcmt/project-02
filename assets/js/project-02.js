@@ -261,6 +261,7 @@ customElements.define('modal-page3', class extends HTMLElement {
           </div>
           <div class="details-container__photo">
             <img class="details-container__image" src="./assets/images/png/untitled.png"/>
+            <div class="details-container__menu" onclick="showPhotoMenu()"><span class="details-container-menu__icon"></span></div>
           </div>
           <div class="block-description details-container__description">"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure</div>
           <div class="details-container__details">
@@ -274,29 +275,34 @@ customElements.define('modal-page3', class extends HTMLElement {
             <div class="block-container">
               <div class="block block-details block05"></div>
               <div class="block-description">"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure</div>
+              <div class="details-container__menu" onclick="showPhotoMenu()" id="menu05"><span class="details-container-menu__icon"></span></div>
             </div>
             <div class="block-container">
               <div class="block block-details block06"></div>
               <div class="block-description">"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure</div>
+              <div class="details-container__menu" onclick="showPhotoMenu()" id="menu06"><span class="details-container-menu__icon"></span></div>
             </div>
             <div class="block-container">
               <div class="block block-details block07"></div>
               <div class="block-description">oi oi oi</div>
+              <div class="details-container__menu" onclick="showPhotoMenu()" id="menu07"><span class="details-container-menu__icon"></span></div>
             </div>
             <div class="block-container">
               <div class="block block-details block08"></div>
               <div class="block-description">oi oi oi</div>
+              <div class="details-container__menu" onclick="showPhotoMenu()" id="menu08"><span class="details-container-menu__icon"></span></div>
             </div>
             <div class="block-container">
               <div class="block block-details block09"></div>
               <div class="block-description">oi oi oi</div>
+              <div class="details-container__menu" onclick="showPhotoMenu()" id="menu09"><span class="details-container-menu__icon"></span></div>
             </div>        
           </div>
         </div>
       </ion-content>`;
   }
 });
-  
+
 function selectPhoto(elem) {
   if (elem.classList.contains('photo-item--selected')) {
     elem.classList.remove('photo-item--selected');
@@ -391,6 +397,19 @@ function createSpaceButton() {
   createCategoryButton.classList.add('element-hide');
 }
 
+function isNewCategory() {
+  let selCategory = document.getElementsByName("spacesCategory")[0];
+  console.log(selCategory.options[selCategory.selectedIndex]);
+  if (selCategory.options[selCategory.selectedIndex].value == "create") {
+    document.getElementById("newCategoryName").classList.remove("element-hide");
+    document.getElementById("newCategoryName_title").classList.remove("element-hide");
+  }
+  else {
+      document.getElementById("newCategoryName").classList.add("element-hide");
+      document.getElementById("newCategoryName_title").classList.add("element-hide");
+  }
+}
+
 function showDescription() {
   let commentInput = document.getElementById('commentInput');
   let inputStoreOrientation = document.getElementById('inputStoreOrientation');
@@ -411,4 +430,39 @@ function tooltipAction() {
     return;
   }
   tooltip.classList.add('show-tooltip');
+}
+
+function showPhotoMenu() {
+  window.alert("show menu options: Comentar, Apagar, etc.");
+}
+
+function publishManual() {
+  window.open("manualPublished.html", "_self");
+}
+
+
+// Get the modal
+var modal = document.getElementById("confirmPublishModal");
+
+// Get the button that opens the modal
+var btnBlue = document.getElementById("defaultButton");
+
+// Get the <span> element that closes the modal
+var btnRed = document.getElementById("modal_cancel");
+
+// When the user clicks on the button, open the modal
+btnBlue.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+btnRed.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
 }
