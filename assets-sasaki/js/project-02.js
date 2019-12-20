@@ -131,7 +131,6 @@ Sortable.create(blockSpace3, {
   }
 });
 
-
 customElements.define('modal-page', class extends HTMLElement {
   connectedCallback() {
     this.innerHTML = modal1;
@@ -149,7 +148,7 @@ customElements.define('modal-page3', class extends HTMLElement {
     this.innerHTML = modal3;
   }
 });
-
+  
 function selectPhoto(elem) {
   if (elem.classList.contains('photo-item--selected')) {
     elem.classList.remove('photo-item--selected');
@@ -177,7 +176,7 @@ function addPhoto() {
 }
 
 async function dismissModal() {
-  
+
   const modal = document.querySelector('ion-modal');
   await modal.dismiss({
     'dismissed': true
@@ -245,19 +244,6 @@ function createSpaceButton() {
   createCategoryButton.classList.add('element-hide');
 }
 
-function isNewCategory() {
-  let selCategory = document.getElementsByName("spacesCategory")[0];
-  console.log(selCategory.options[selCategory.selectedIndex]);
-  if (selCategory.options[selCategory.selectedIndex].value == "create") {
-    document.getElementById("newCategoryName").classList.remove("element-hide");
-    document.getElementById("newCategoryName_title").classList.remove("element-hide");
-  }
-  else {
-      document.getElementById("newCategoryName").classList.add("element-hide");
-      document.getElementById("newCategoryName_title").classList.add("element-hide");
-  }
-}
-
 function showDescription() {
   let commentInput = document.getElementById('commentInput');
   let inputStoreOrientation = document.getElementById('inputStoreOrientation');
@@ -278,39 +264,4 @@ function tooltipAction() {
     return;
   }
   tooltip.classList.add('show-tooltip');
-}
-
-function showPhotoMenu() {
-  window.alert("show menu options: Comentar, Apagar, etc.");
-}
-
-function publishManual() {
-  window.open("manualPublished.html", "_self");
-}
-
-
-// Get the modal
-var modal = document.getElementById("confirmPublishModal");
-
-// Get the button that opens the modal
-var btnBlue = document.getElementById("defaultButton");
-
-// Get the <span> element that closes the modal
-var btnRed = document.getElementById("modal_cancel");
-
-// When the user clicks on the button, open the modal
-btnBlue.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-btnRed.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
 }
