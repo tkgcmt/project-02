@@ -737,6 +737,10 @@ ion-toolbar {
   margin-top: 30px;
 }
 
+.modal .tooltip-buttons {
+  margin: 0 20px;
+}
+
 .tooltip-red-button {
   border-radius: 23px;
   color: #fff;
