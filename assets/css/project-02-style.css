@@ -5,7 +5,7 @@
 body {
   margin: 0;
   position: unset !important; /*override ionic fixed position*/
-  overflow: auto !important; /*override ionic hidden overflow*/
+  overflow-y: auto !important; /*override ionic hidden overflow*/
 }
 
 .header {
