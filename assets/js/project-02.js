@@ -3,12 +3,24 @@ let blocksOrder1 = "";
 let blocksOrder2 = "";
 let blocksOrder3 = "";
 
+const modal1Remove = document.getElementById('modal1');
+const modal2Remove = document.getElementById('modal2');
+const modal3Remove = document.getElementById('modal3');
+const modal1 = modal1Remove.innerHTML;
+const modal2 = modal2Remove.innerHTML;
+const modal3 = modal3Remove.innerHTML;
+window.onload = () => {
+  modal1Remove.remove();
+  modal2Remove.remove();
+  modal3Remove.remove();
+}
 
 Sortable.create(spaceList, {
     handle: '.collapsible-menu__label-toggle',
     animation: 150,
     delay: 100,
     delayOnTouchOnly: true,
+    ghostClass: 'ghost-line-horizontal',
     store: {
       /**
        * Get the order of elements. Called once during initialization.
@@ -37,6 +49,7 @@ Sortable.create(blockSpace1, {
   animation: 150,
   delay: 100,
   delayOnTouchOnly: true,
+  ghostClass: 'ghost-line-vertical',
   store: {
 		/**
 		 * Get the order of elements. Called once during initialization.
@@ -65,6 +78,7 @@ Sortable.create(blockSpace2, {
   animation: 150,
   delay: 100,
   delayOnTouchOnly: true,
+  ghostClass: 'ghost-line-vertical',
   store: {
 		/**
 		 * Get the order of elements. Called once during initialization.
@@ -93,6 +107,7 @@ Sortable.create(blockSpace3, {
   animation: 150,
   delay: 100,
   delayOnTouchOnly: true,
+  ghostClass: 'ghost-line-vertical',
   store: {
 		/**
 		 * Get the order of elements. Called once during initialization.
@@ -116,193 +131,24 @@ Sortable.create(blockSpace3, {
   }
 });
 
-
 customElements.define('modal-page', class extends HTMLElement {
   connectedCallback() {
-    this.innerHTML = `
-      <div class="header">
-        <div class="header__title">{{ header }}</div> 
-      </div>
-      <ion-content class="ion-padding">
-        <div class="photo-selection__actions">
-          <div class="photo-selection-text">
-            Selecionado <div class="selected-photos-counter" id="selectedPhotos">1</div> fotos
-          </div>
-          <div class="photo-selection-button" onclick="seeGallery()">
-            OK
-          </div>
-        </div>
-
-        <div class="photo-grid">
-          <div class="photo-item photo-item--selected" onclick="selectPhoto(this)"><ion-icon class="check-icon" name="checkmark"></ion-icon></div>
-          <div class="photo-item" onclick="selectPhoto(this)"></div>
-          <div class="photo-item" onclick="selectPhoto(this)" ></div>
-          <div class="photo-item" onclick="selectPhoto(this)"></div>
-          <div class="photo-item" onclick="selectPhoto(this)"></div>
-          <div class="photo-item" onclick="selectPhoto(this)"></div>
-          <div class="photo-item" onclick="selectPhoto(this)"></div>
-          <div class="photo-item" onclick="selectPhoto(this)"></div>
-          <div class="photo-item" onclick="selectPhoto(this)"></div>
-          <div class="photo-item" onclick="selectPhoto(this)"></div>
-          <div class="photo-item" onclick="selectPhoto(this)"></div>
-          <div class="photo-item" onclick="selectPhoto(this)"></div>
-          <div class="photo-item" onclick="selectPhoto(this)"></div>
-        </div>  
-      </ion-content>`;
+    this.innerHTML = modal1;
   }
 });
 
 customElements.define('modal-page2', class extends HTMLElement {
   connectedCallback() {
-    this.innerHTML = `
-      <div class="gallery-main-image">
-        <div class="photo-display-header">
-          <div class="photo-display-header__icons">
-            <div class="left-icons">
-              <ion-icon class="gallery-icons" name="arrow-back" onclick="dismissModal()"></ion-icon>
-              <div class="thrash-icon-container">
-              <ion-icon class="gallery-icons" name="trash" onclick="tooltipAction()">
-              </ion-icon>
-              <div id="tooltip" class="tooltip">
-                Tem certeza de que quer apagar essa foto? Essa ação não poderá ser desfeita.
-
-                <div class="tooltip-buttons">
-                  <div class="tooltip-blue-button" onclick="tooltipAction()">
-                    cancelar
-                  </div>
-                  <div class="tooltip-red-button" onclick="dismissModal()">
-                    apagar
-                </div>
-                </div>
-              </div>
-              </div>
-
-            </div>
-            <div class="right-icons">
-              <ion-icon class="gallery-icons" name="chatbubbles" onclick="showDescription()"></ion-icon>
-              <ion-icon class="gallery-icons" name="star" onclick="makeFavorite(this)"></ion-icon>
-              <ion-icon class="gallery-icons" name="checkmark" onclick="seeDetails()"></ion-icon>
-            </div>
-          </div> 
-        </div>
-
-        <div class="gallery-footer-container">
-          <div id="inputStoreOrientation" class="comment-input">
-            <div class="comment-input__text" onclick="showDescription();">
-              Digite a orientação para a loja...
-            </div>
-          </div>
-
-          <div id="commentInput" class="comment-input element-hide">
-              <div class="comment-input__text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </div>
-          </div>
-
-          <div class="photo-display-footer">
-          <div id="blockSpace4" class="space">
-            <div class="block-container block-gallery-container">
-              <div class="block block-gallery photo-item--selected block03" draggable="true" ondragstart="drag(event)"></div>
-              <ion-icon class="block-gallery-icon shiny-star" name="star"></ion-icon>
-            </div>
-            
-            <div class="block-container">
-              <div class="block-add block-gallery add-item-block" >
-                <ion-icon class="icon-add-gallery" name="add"></ion-icon>
-                <div class="block-gallery-details-text">    
-                  Detalhe
-                </div>
-              </div>
-
-            </div>
-
-            <div class="block-container">
-              <div class="block block-gallery block04" draggable="true" ondragstart="drag(event)"></div>
-            </div>
-            <div class="block-container">
-              <div class="block block-gallery block05" draggable="true" ondragstart="drag(event)"></div>
-            </div>
-            <div class="block-container">
-              <div class="block block-gallery block06" draggable="true" ondragstart="drag(event)"></div>
-            </div>
-            <div class="block-container">
-              <div class="block block-gallery block07" draggable="true" ondragstart="drag(event)"></div>
-            </div>
-            <div class="block-container">
-              <div class="block block-gallery block08" draggable="true" ondragstart="drag(event)"></div>
-            </div>
-            <div class="block-container">
-              <div class="block block-gallery block09" draggable="true" ondragstart="drag(event)"></div>
-            </div>         
-          </div> 
-        </div>
-      </div>
-    </div>
-      `;
+    this.innerHTML = modal2;
   }
 });
 
 customElements.define('modal-page3', class extends HTMLElement {
   connectedCallback() {
-    this.innerHTML = `
-      <div class="details-container__header">
-        <ion-icon class="gallery-icons" name="arrow-back" onclick="dismissModal()"></ion-icon>
-        <div class="details-container__header-title">
-          Gerenciar fotos do item 
-        </div> 
-      </div>
-      <ion-content>
-        <div class="details-container">
-          <div class="details-container__title">
-            Foto principal
-            <ion-icon class="gallery-icons shiny-star" name="star"></ion-icon>
-          </div>
-          <div class="details-container__photo">
-            <img class="details-container__image" src="./assets/images/png/untitled.png"/>
-            <div class="details-container__menu" onclick="showPhotoMenu()"><span class="details-container-menu__icon"></span></div>
-          </div>
-          <div class="block-description details-container__description">"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure</div>
-          <div class="details-container__details">
-            Detalhes
-          </div>
-          <div class="details-container__blocks">
-            <div class="block-container">
-              <div class="block-add block-details" draggable="false"><ion-icon class="icon-add" name="add"></ion-icon></div>
-                  <div class="block-description">"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure</div>
-                </div>
-            <div class="block-container">
-              <div class="block block-details block05"></div>
-              <div class="block-description">"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure</div>
-              <div class="details-container__menu" onclick="showPhotoMenu()" id="menu05"><span class="details-container-menu__icon"></span></div>
-            </div>
-            <div class="block-container">
-              <div class="block block-details block06"></div>
-              <div class="block-description">"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure</div>
-              <div class="details-container__menu" onclick="showPhotoMenu()" id="menu06"><span class="details-container-menu__icon"></span></div>
-            </div>
-            <div class="block-container">
-              <div class="block block-details block07"></div>
-              <div class="block-description">oi oi oi</div>
-              <div class="details-container__menu" onclick="showPhotoMenu()" id="menu07"><span class="details-container-menu__icon"></span></div>
-            </div>
-            <div class="block-container">
-              <div class="block block-details block08"></div>
-              <div class="block-description">oi oi oi</div>
-              <div class="details-container__menu" onclick="showPhotoMenu()" id="menu08"><span class="details-container-menu__icon"></span></div>
-            </div>
-            <div class="block-container">
-              <div class="block block-details block09"></div>
-              <div class="block-description">oi oi oi</div>
-              <div class="details-container__menu" onclick="showPhotoMenu()" id="menu09"><span class="details-container-menu__icon"></span></div>
-            </div>        
-          </div>
-        </div>
-      </ion-content>`;
+    this.innerHTML = modal3;
   }
 });
-
+  
 function selectPhoto(elem) {
   if (elem.classList.contains('photo-item--selected')) {
     elem.classList.remove('photo-item--selected');
@@ -330,6 +176,7 @@ function addPhoto() {
 }
 
 async function dismissModal() {
+
   const modal = document.querySelector('ion-modal');
   await modal.dismiss({
     'dismissed': true
@@ -397,19 +244,6 @@ function createSpaceButton() {
   createCategoryButton.classList.add('element-hide');
 }
 
-function isNewCategory() {
-  let selCategory = document.getElementsByName("spacesCategory")[0];
-  console.log(selCategory.options[selCategory.selectedIndex]);
-  if (selCategory.options[selCategory.selectedIndex].value == "create") {
-    document.getElementById("newCategoryName").classList.remove("element-hide");
-    document.getElementById("newCategoryName_title").classList.remove("element-hide");
-  }
-  else {
-      document.getElementById("newCategoryName").classList.add("element-hide");
-      document.getElementById("newCategoryName_title").classList.add("element-hide");
-  }
-}
-
 function showDescription() {
   let commentInput = document.getElementById('commentInput');
   let inputStoreOrientation = document.getElementById('inputStoreOrientation');
@@ -430,39 +264,4 @@ function tooltipAction() {
     return;
   }
   tooltip.classList.add('show-tooltip');
-}
-
-function showPhotoMenu() {
-  window.alert("show menu options: Comentar, Apagar, etc.");
-}
-
-function publishManual() {
-  window.open("manualPublished.html", "_self");
-}
-
-
-// Get the modal
-var modal = document.getElementById("confirmPublishModal");
-
-// Get the button that opens the modal
-var btnBlue = document.getElementById("defaultButton");
-
-// Get the <span> element that closes the modal
-var btnRed = document.getElementById("modal_cancel");
-
-// When the user clicks on the button, open the modal
-btnBlue.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-btnRed.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
 }

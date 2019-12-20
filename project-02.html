@@ -22,6 +22,7 @@
         </div>
 
         <div class="main-container">
+
             <div class="manual-map__title">
                 Criação de manual
             </div>
@@ -76,20 +77,17 @@
               </div>
 
               <div id="createCategory" class="create-category-container element-hide">
-                <div class="create-category__title" id="newSpaceName">Nome do espaço</div>
+                <div class="create-category__title">Nome do espaço</div>
                 <input class="create-category__input"></input>
                 <div class="create-category__title">Criar nova categoria</div>
-                <select name="spacesCategory" class="create-category__combobox" onchange="isNewCategory()">
+                <select name="spaces" class="create-category__combobox">
                     <option class="add-space__combobox-text add-space__combobox-text--default" value="">Selecione uma opção...</option>
-                    <option class="add-space__combobox-text" value="vitrine1">Vitrine 1</option>
-                    <option class="add-space__combobox-text" value="vitrine2">Vitrine 2</option>
+                    <option class="add-space__combobox-text add-space__combobox-text--title" disabled value="vitrine1">Vitrine 1</option>
+                    <option class="add-space__combobox-text add-space__combobox-text--title" disabled value="vitrine2">Vitrine 2</option>
                     <option class="add-space__combobox-text" value="create">Criar nova categoria</option>
                 </select>
-                <div class="create-category__title element-hide" id="newCategoryName_title">Nome da categoria</div>
-                <input class="create-category__input element-hide" id="newCategoryName"></input>
             </div>
           </div>
-            <!--spaces area TODO: AJUSTAR-->
 
             <div id="spacesContent" class="content">
 
@@ -158,8 +156,10 @@
                       </div>
                     </div>
                   </div>
-                 </div>    
-                  <div class="space-list-item">
+                 </div>
+                 
+                  
+                      <div class="space-list-item">
                     <input id="collapsible2" class="toggle" type="checkbox">
                     <label for="collapsible2" class="collapsible-menu__label-toggle">
                       <ion-icon class="grab-icon" name="reorder"></ion-icon>
@@ -281,35 +281,188 @@
                 <div class="footer__button-save">
                     salvar rascunho
                 </div>
-                <div id="defaultButton" class="footer__button-publish" onclick="publishManual()">
+                <div id="defaultButton" class="footer__button-publish">
                     publicar
                 </div>
-
-                <!-- The Modal -->
-                <div id="confirmPublishModal" class="modal">
-                  <!-- Modal content -->
-                  <div class="modal-content">
-                    <p>Ao publicar, você enviará esse manual para as XX lojas selecionadas. Tem certeza que deseja prosseguir?</p>
-                  </div>
-                  <div class="tooltip-buttons">
-                    <div id="modal_cancel" class="tooltip-red-button" onclick="closeModal()">
-                      Não, cancelar
-                    </div>
-                    <div id="modal_ok" class="tooltip-green-button" onclick="publishManual()">
-                      Sim, enviar
-                    </div>
-                  </div>
-
-
-                <!-- Para aplicar o estilo de desabilitado, basta adicionar a classe disabled. É preciso interceptar a ação via JS ainda. -->
-                <!-- <div id="defaultButton" class="footer__button-publish disabled">
-                  publicar
-                </div> -->
                 <div id="createCategoryButton" class="footer__button-create element-hide" onclick="createSpaceButton()">
                   criar
               </div>
             </div>
         </div>
+     
+        <!-- API da galeria de fotos -->
+        <div id="modal1" class="modal-hide">
+          <div class="header">
+            <div class="header__title">{{ header }}</div> 
+          </div>
+          <ion-content class="ion-padding">
+            <div class="photo-selection__actions">
+              <div class="photo-selection-text">
+                Selecionado <div class="selected-photos-counter" id="selectedPhotos">1</div> fotos
+              </div>
+              <div class="photo-selection-button" onclick="seeGallery()">
+                OK
+              </div>
+            </div>
+    
+            <div class="photo-grid">
+              <div class="photo-item photo-item--selected" onclick="selectPhoto(this)"><ion-icon class="check-icon" name="checkmark"></ion-icon></div>
+              <div class="photo-item" onclick="selectPhoto(this)"></div>
+              <div class="photo-item" onclick="selectPhoto(this)" ></div>
+              <div class="photo-item" onclick="selectPhoto(this)"></div>
+              <div class="photo-item" onclick="selectPhoto(this)"></div>
+              <div class="photo-item" onclick="selectPhoto(this)"></div>
+              <div class="photo-item" onclick="selectPhoto(this)"></div>
+              <div class="photo-item" onclick="selectPhoto(this)"></div>
+              <div class="photo-item" onclick="selectPhoto(this)"></div>
+              <div class="photo-item" onclick="selectPhoto(this)"></div>
+              <div class="photo-item" onclick="selectPhoto(this)"></div>
+              <div class="photo-item" onclick="selectPhoto(this)"></div>
+              <div class="photo-item" onclick="selectPhoto(this)"></div>
+            </div>  
+          </ion-content>
+        </div>
+        <!-- // API da galeria de fotos -->
 
+
+        <!-- EDITOR DE FOTOS -->
+        <div id="modal2" class="modal-hide">
+          <div class="gallery-main-image">
+            <div class="photo-display-header">
+              <div class="photo-display-header__icons">
+                <div class="left-icons">
+                  <ion-icon class="gallery-icons" name="arrow-back" onclick="dismissModal()"></ion-icon>
+                  <div class="thrash-icon-container">
+                    <ion-icon class="gallery-icons" name="trash" onclick="tooltipAction()"></ion-icon>
+                    <div id="tooltip" class="tooltip">
+                    Tem certeza de que quer apagar essa foto? Essa ação não poderá ser desfeita.
+
+                    <div class="tooltip-buttons">
+                      <div class="tooltip-blue-button" onclick="tooltipAction()">
+                        cancelar
+                      </div>
+                      <div class="tooltip-red-button" onclick="dismissModal()">
+                        apagar
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="right-icons">
+                <ion-icon class="gallery-icons" name="chatbubbles" onclick="showDescription()"></ion-icon>
+                <ion-icon class="gallery-icons" name="star" onclick="makeFavorite(this)"></ion-icon>
+                <ion-icon class="gallery-icons" name="checkmark" onclick="seeDetails()"></ion-icon>
+              </div>
+            </div> 
+          </div>
+
+          <div class="gallery-footer-container">
+            <div id="inputStoreOrientation" class="comment-input">
+              <div class="comment-input__text" onclick="showDescription();">
+                Digite a orientação para a loja...
+              </div>
+            </div>
+
+            <div id="commentInput" class="comment-input element-hide">
+              <div class="comment-input__text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </div>
+            </div>
+
+            <div class="photo-display-footer">
+              <div id="blockSpace4" class="space">
+                <div class="block-container block-gallery-container">
+                  <div class="block block-gallery photo-item--selected block03" draggable="true" ondragstart="drag(event)"></div>
+                  <ion-icon class="block-gallery-icon shiny-star" name="star"></ion-icon>
+                </div>
+            
+                <div class="block-container">
+                  <div class="block-add block-gallery add-item-block" >
+                    <ion-icon class="icon-add-gallery" name="add"></ion-icon>
+                    <div class="block-gallery-details-text">    
+                      Detalhe
+                    </div>
+                  </div>
+                </div>
+
+                <div class="block-container">
+                  <div class="block block-gallery block04" draggable="true" ondragstart="drag(event)"></div>
+                </div>
+                <div class="block-container">
+                  <div class="block block-gallery block05" draggable="true" ondragstart="drag(event)"></div>
+                </div>
+                <div class="block-container">
+                  <div class="block block-gallery block06" draggable="true" ondragstart="drag(event)"></div>
+                </div>
+                <div class="block-container">
+                  <div class="block block-gallery block07" draggable="true" ondragstart="drag(event)"></div>
+                </div>
+                <div class="block-container">
+                  <div class="block block-gallery block08" draggable="true" ondragstart="drag(event)"></div>
+                </div>
+                <div class="block-container">
+                  <div class="block block-gallery block09" draggable="true" ondragstart="drag(event)"></div>
+                </div>         
+              </div> 
+            </div>
+          </div>
+        </div>
+        </div>
+        <!-- // EDITOR DE FOTOS -->
+
+      <!-- VISUALIZAÇÃO DO ITEM MONTAGEM -->
+      <div id="modal3" class="modal-hide">
+        <div class="details-container__header">
+          <ion-icon class="gallery-icons" name="arrow-back" onclick="dismissModal()"></ion-icon>
+          <div class="details-container__header-title">
+            Gerenciar fotos do item 
+          </div> 
+        </div>
+        <ion-content>
+          <div class="details-container">
+            <div class="details-container__title">
+              Foto principal
+              <ion-icon class="gallery-icons shiny-star" name="star"></ion-icon>
+            </div>
+            <div class="details-container__photo">
+              <img class="details-container__image" src="./assets/images/png/untitled.png"/>
+            </div>
+            <div class="block-description details-container__description">"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure</div>
+            <div class="details-container__details">
+              Detalhes
+            </div>
+            <div class="details-container__blocks">
+              <div class="block-container">
+                <div class="block-add block-details" draggable="false"><ion-icon class="icon-add details-icon-add" name="add"></ion-icon></div>
+                    <div class="block-description block-details__description">"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure</div>
+                  </div>
+              <div class="block-container">
+                <div class="block block-details block05"></div>
+                <div class="block-description block-details__description">"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure</div>
+              </div>
+              <div class="block-container">
+                <div class="block block-details block06"></div>
+                <div class="block-description block-details__description">"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure</div>
+              </div>
+              <div class="block-container">
+                <div class="block block-details block07"></div>
+                <div class="block-description block-details__description">oi oi oi</div>
+              </div>
+              <div class="block-container">
+                <div class="block block-details block08"></div>
+                <div class="block-description block-details__description">oi oi oi</div>
+              </div>
+              <div class="block-container">
+                <div class="block block-details block09"></div>
+                <div class="block-description block-details__description">oi oi oi</div>
+              </div>        
+            </div>
+          </div>
+        </ion-content>
+      </div>
+      <!-- // VISUALIZAÇÃO DO ITEM MONTAGEM -->
     </body>
 </html>
