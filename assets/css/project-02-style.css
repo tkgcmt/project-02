@@ -782,6 +782,7 @@ ion-toolbar {
   width: 2px;
   height: 140px;
   background-color: #66CCFF;
+  position: relative;
 }
 
 .ghost-line-horizontal {
@@ -790,6 +791,27 @@ ion-toolbar {
   background-color: #66CCFF;
   opacity: 1;
   margin: 5px 0;
+}
+
+.ghost-line-vertical::before,
+.ghost-line-horizontal::before {
+  content: "";
+  display: block;
+  background-color: #66CCFF;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+}
+
+.ghost-line-vertical::before {
+  margin-left: -1px;
+}
+
+.ghost-line-horizontal::before {
+  margin-top: -2px;
+}
 
 .published-manual__body {
   margin: 20px 10px;
