@@ -870,3 +870,46 @@ ion-toolbar {
   border-radius: 8px;
   width: 80%; /* Could be more or less, depending on screen size */
 }
+
+@media screen and (min-width: 500px) and (max-width: 767px) {
+  .block-details {
+    width: 29vw;
+    height: 29vw;
+  }
+  
+  .block-details__description {
+    width: 29vw;
+  }
+  
+  .details-icon-add {
+    width: 29vw;
+    height: 29vw;
+  }
+  
+  .details-container__blocks {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .block-details {
+    width: 44vw;
+    height: 44vw;
+  }
+  
+  .block-details__description {
+    width: 44vw;
+    max-width: 280px;
+  }
+  
+  .details-icon-add {
+    width: 44vw;
+    height: 44vw;
+  }
+  
+  .details-container__blocks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
